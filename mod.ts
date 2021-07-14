@@ -1,1 +1,2 @@
-export { default as Anyql } from './sql.ts'
+export { default as Anyql } from './aql.ts'
+export * from './types.ts'
