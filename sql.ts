@@ -35,8 +35,11 @@ export default class anyQl {
                     }
                 }))
                 res({ result, errors })
-            }else{
-                rej(`[${missing.join(', ')}] missing from resolvers`)
+            } else {
+                rej({
+                    ok: false,
+                    errors: [`[${missing.join(', ')}] missing from resolvers`]
+                })
             }
         })
 
@@ -47,6 +50,7 @@ export default class anyQl {
             let { result: queryResult, errors: queryErrors } = await this.forQuery(payload.query)
 
             return await {
+                ok: true,
                 result: { ...queryResult },
                 errors: [...queryErrors]
             }
